@@ -3,9 +3,10 @@ export const GOLD_PRICE_PER_GRAM_USD = 124.91;
 
 
 export const fetchProducts = async () => {
-    // const API_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:4000";
+    // connected render to take the data
+    const LIVE_API_BASE_URL = "https://backend-srv-wftl.onrender.com"; 
 
-    const response = await fetch("https://sizin-canli-backend.com/api/products");
+    const response = await fetch(`${LIVE_API_BASE_URL}/api/products`); 
         
     if (!response.ok) {
         throw new Error(`API hatası: ${response.status}`);
