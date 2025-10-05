@@ -4,7 +4,7 @@ const path = require('path');
 const cors = require('cors');
 
 const app = express();
-const PORT = 4000;
+const PORT = process.env.PORT || 4000; 
 
 app.use(cors());
 
@@ -16,8 +16,6 @@ const FIXED_PRICE = 101.00;
 
 app.get('/api/products', async (req, res) => {
     try {
-
-
         const productsWithPrice = products.map(product => ({
             ...product,
             price: FIXED_PRICE, 
@@ -27,11 +25,11 @@ app.get('/api/products', async (req, res) => {
         
     } catch (error) {
         console.error("Ürünler alınırken hata oluştu", error);
-        res.status(500).json({ message: "Ürün verileri işlenemeid." });
+        res.status(500).json({ message: "Ürün verileri işlenemedi." });
     }
 });
 
 app.listen(PORT, () => {
-    console.log(`http://localhost:${PORT} adresinde çalışıyor`);
-    console.log(`Ürün APIsi http://localhost:${PORT}/api/products`);
+    console.log(`Sunucu port ${PORT} adresinde çalışıyor`); 
+    console.log(`Ürün APIsi aktif: /api/products`);
 });
